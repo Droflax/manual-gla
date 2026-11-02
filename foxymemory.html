@@ -1,50 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foxy Memory</title>
+    <title>Foxy Memory | El Manual del GLA</title>
+    <meta name="description" content="Ayuda para el minijuego de memoria de colores del evento Foxy de Grand Line Adventures.">
     <link rel="icon" href="Img/ico.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/foxymemory.min.css?v=1.1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Roboto:wght@400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="css/foxymemory.min.css?v=2.1">
 </head>
 
 <body>
-    <div class="background">
-        <div class="container">
-            <div class="rot-bt">
-                <span class="material-symbols-sharp" style="color: white;">
-                    home
-                </span>
-            </div>
-            <div class="bg-img">
-                <img id="reference-img" src="Img/memory/reference.png">
-                <div class="main-memory">
-                    <div class="main-grid" id="squares-container">
-                    </div>
-                    <div class="bt-div">
-                        <a>Reset</a>
-                    </div>
-                </div>
-                <div class="guide">
-                    <button id="close-button"><i class="fa-solid fa-xmark"></i></button>
-                    <p>Presiona SPACEBAR (Espacio) o el boton "Reset" para reiniciar los colores</p>
-                    <p>Puedes usar el teclado numerico para ingresar el color más rapido</p>
-                    <p>Para volver presiona en el boton de la esquina superior-izquierda</p>
-                    <p>Puedes cerrar esta ventana en cualquier momento</p>
-                </div>
-                <a class="lionheart">
-                    <img onclick="location.href='https://lionheartgla.github.io/Gla-Database/index.html';" src="Img/main/MainImages/LionHeart.png">
-                    <p>Inspirado y basado en el trabajo de LionHeart.</p>
-                </a>
-            </div>
+    <div class="backdrop" aria-hidden="true"></div>
+
+    <header class="topbar">
+        <a class="home-btn" href="index.html" aria-label="Volver al inicio" title="Volver al inicio">
+            <span class="material-symbols-sharp">home</span>
+        </a>
+        <h1 class="title">Foxy Memory</h1>
+        <button type="button" class="btn" id="reset-btn" title="Reiniciar (Espacio)">
+            <span class="material-symbols-sharp">restart_alt</span>
+            <span class="btn-label">Reiniciar</span>
+        </button>
+    </header>
+
+    <main class="layout">
+        <section class="board-wrap" aria-label="Tablero">
+            <div class="board" id="board" role="group" aria-label="Cuadrícula de 12 casillas"></div>
+            <p class="status" id="status" role="status" aria-live="polite"></p>
+        </section>
+
+        <aside class="panel" aria-label="Ayuda">
+            <h2>Atajos de color</h2>
+            <p class="panel-hint">Pasa el mouse sobre una casilla (o tócala) y presiona la tecla.</p>
+            <ul class="legend" id="legend"></ul>
+
+            <h2>Cómo usarlo</h2>
+            <ol class="steps">
+                <li>Copia en el tablero los colores que ves en el juego.</li>
+                <li>Las casillas con un color que no se repite parpadean.</li>
+                <li>Reinicia con <kbd>Espacio</kbd> o con el botón.</li>
+            </ol>
+        </aside>
+    </main>
+
+    <div class="dock" id="dock" role="toolbar" aria-label="Elegir color">
+        <div class="dock-title">
+            <span id="dock-label">Casilla</span>
+            <span class="dock-actions">
+                <button type="button" id="dock-clear">Vaciar</button>
+                <button type="button" id="dock-close">Listo</button>
+            </span>
         </div>
+        <div class="dock-swatches" id="dock-swatches"></div>
     </div>
-    <div class="firma" onclick="location.href='https://www.youtube.com/@Droflax/videos';">
-        <p>Droflax</p>
-    </div>
-    <script src="js/foxymemory.min.js"></script>
+
+    <footer class="credit">
+        Hecho por <a href="https://www.youtube.com/@Droflax/videos" target="_blank" rel="noopener">Droflax</a>
+    </footer>
+
+    <script src="js/foxymemory.min.js?v=2.1"></script>
 </body>
 
 </html>

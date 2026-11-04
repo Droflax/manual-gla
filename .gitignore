@@ -3,9 +3,15 @@ css/index.css
 css/foxycount.css
 css/foxyquiz.css
 css/foxymemory.css
+css/puzzle_antorchas.css
+css/tokens.css
+css/base.css
+css/components.css
 js/kureha.js
 js/index.js
 js/foxyquiz.js
 js/foxycount.js
 js/foxymemory.js
 js/chars.js
+js/puzzle_antorchas.js
+js/data.js

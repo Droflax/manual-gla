@@ -3,192 +3,332 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>El Manual del GLA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>El Manual del GLA | Herramientas para Grand Line Adventures</title>
+    <meta name="description" content="Herramientas gratuitas para jugadores de Grand Line Adventures: Foxy Count, Foxy Memory, Foxy Quiz, pacientes de Kureha, antorchas de Noland y registro de actividades semanales.">
+    <meta name="theme-color" content="#03213f">
+
+    <!-- Vista previa al compartir (Discord, WhatsApp, X). Cambia la URL de og:image por la ruta absoluta de tu dominio. -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="El Manual del GLA">
+    <meta property="og:description" content="Herramientas para jugadores de Grand Line Adventures: eventos Foxy, Kureha, antorchas y registro semanal.">
+    <meta property="og:image" content="Img/main/MainImages/Icono.png">
+    <meta name="twitter:card" content="summary">
+
     <link rel="icon" href="Img/ico.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/index.min.css?v=1.4">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block">
+    <link rel="stylesheet" href="css/tokens.min.css?v=2.2">
+    <link rel="stylesheet" href="css/base.min.css?v=2.2">
+    <link rel="stylesheet" href="css/components.min.css?v=2.2">
+    <link rel="stylesheet" href="css/index.min.css?v=2.2">
 </head>
 
 <body>
-    <div class="background">
-        <div class="event-container">
-            <h2 class="event-title">Proximo Evento:</h2>
-            <img id="event-image" class="event-image" src="Img/main/Event_race.png" alt="Evento">
-            <div id="event-time" class="time-remaining">Cargando...</div>
-        </div>
+    <a class="skip-link" href="#herramientas">Saltar a las herramientas</a>
 
-        <!-- Botón para abrir el modal -->
-        <button id="registro-actividad">Registro de Actividades</button>
+    <header class="topbar">
+        <a class="brand" href="index.html" aria-label="El Manual del GLA, inicio">
+            <img src="Img/main/MainImages/Icono.png" alt="" width="40" height="40">
+            <span>El Manual del GLA</span>
+        </a>
+        <nav class="topnav" aria-label="Secciones">
+            <a href="#herramientas">Herramientas</a>
+            <a href="#comunidad">Comunidad</a>
+        </nav>
+        <button type="button" class="btn btn--gold btn--sm" data-open-tracker>
+            <span class="material-symbols-sharp" aria-hidden="true">checklist</span>
+            <span class="topbar__btn-label">Mis actividades</span>
+        </button>
+    </header>
 
-        <div id="overlay" class="overlay" style="display: none;" onclick="cerrarModal()"></div>
+    <main>
+        <!-- ===== Portada ===== -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="hero__bg" aria-hidden="true"></div>
 
-        <!-- Modal -->
-        <div id="modal-cuentas" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-            <div class="modal-content">
-                <button class="close"><i class="fa-solid fa-xmark"></i></button>
-                <h2 id="modal-title">Cuentas</h2>
-                <div id="account-list"></div>
-                <button id="add-new-account">Agregar una cuenta</button>
-            </div>
-        </div>
-
-        <!-- Modal -->
-        <div id="modal-registro" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-            <div class="modal-content">
-                <button class="close2"><i class="fa-solid fa-xmark"></i></button>
-                <h2 id="modal-title">Agregar Cuenta</h2>
-                <input id="account-name" type="text" placeholder="Nombre de cuenta">
-                <div id="account-icons">
-                    <p id="select-icon-title">Seleccionar Ícono</p>
-                    <img id="selected-icon" src="Img/count/Medals/NoCategory.png" alt="Ícono seleccionado">
-                </div>
-                <button id="add-account">Agregar Cuenta</button>
-            </div>
-        </div>
-        <div id="image-gallery" style="display: none;"></div>
-
-        <!-- Modal Diamantes-->
-        <div id="modal-diamantes" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-            <button class="close3"><i class="fa-solid fa-xmark"></i></button>
-            <div id="diamante-icons">
-                <div class="personaje-diamante" id="kuma">
-                    <img id="diamante-icon" src="Img/count/Medals/Kuma.png">
-                    <p id="contador">0/5</p>
-                    <p id="diamante-title">Kuma</p>
-                </div>
-                <div class="personaje-diamante" id="boa">
-                    <img id="diamante-icon" src="Img/count/Medals/Hancock.png">
-                    <p id="contador">0/5</p>
-                    <p id="diamante-title">Boa Hancock</p>
-                </div>
-                <div class="personaje-diamante" id="kizaru">
-                    <img id="diamante-icon" src="Img/count/Medals/Kizaru.png">
-                    <p id="contador">0/5</p>
-                    <p id="diamante-title">Kizaru</p>
-                </div>
-                <div class="personaje-diamante" id="doflamingo">
-                    <img id="diamante-icon" src="Img/count/Medals/Doflamingo.png">
-                    <p id="contador">0/5</p>
-                    <p id="diamante-title">Doflamingo</p>
-                </div>
-                <div class="personaje-diamante" id="mihawk">
-                    <img id="diamante-icon" src="Img/count/Medals/Mihawk.png">
-                    <p id="contador">0/5</p>
-                    <p id="diamante-title">Mihawk</p>
-                </div>
-                <div class="personaje-diamante" id="ivankov">
-                    <img id="diamante-icon" src="Img/count/Medals/Ivankov.png">
-                    <p id="contador">0/5</p>
-                    <p id="diamante-title">Ivankov</p>
-                </div>
-                <!--div class="personaje-diamante" id="enel">
-                    <img id="diamante-icon" src="Img/count/Medals/Enel.png">
-                    <p id="contador">0/5</p>
-                    <p id="diamante-title">Enel</p>
-                </div-->
-                <div class="personaje-diamante" id="jinbe">
-                    <img id="diamante-icon" src="Img/count/Medals/Jinbe.png">
-                    <p id="contador">0/5</p>
-                    <p id="diamante-title">Jinbe</p>
-                </div>
-                <div class="personaje-diamante" id="barbanegra">
-                    <img id="diamante-icon" src="Img/count/Medals/Barbanegra.png">
-                    <p id="contador">0/5</p>
-                    <p id="diamante-title">Barba Negra</p>
-                </div>
-                <div class="personaje-diamante" id="shanks">
-                    <img id="diamante-icon" src="Img/count/Medals/Shanks.png">
-                    <p id="contador">0/5</p>
-                    <p id="diamante-title">Shanks</p>
-                </div>
-            </div>
-            <div id="oros-icons">
-                <div id="personaje-oros">
-                    <img id="oros-icon" src="Img/count/Medals/NoCategory.png">
-                    <p id="contador-medallas">0/540</p>
-                    <p id="oros-title">Random</p>
-                    <div class="range">
-                        <span class="material-symbols-sharp">expand_circle_down</span>
-                        <span class="material-symbols-sharp">expand_circle_up</span>
-                    </div>
-                    <div class="tier">
-                        <img id="star" src="Img/main/stargold.png">
-                        <img id="star" src="Img/main/stargold.png">
-                        <img id="star" src="Img/main/stargold.png">
-                        <img id="star" src="Img/main/stargold.png">
-                        <img id="star" src="Img/main/stargold.png">
+            <div class="hero__inner">
+                <div class="hero__copy">
+                    <h1 id="hero-title">El Manual del GLA</h1>
+                    <p class="hero__lead">Todo lo que necesitas para los eventos y desafíos de Grand Line Adventures, en un solo lugar y sin instalar nada.</p>
+                    <div class="hero__cta">
+                        <button type="button" class="btn btn--gold" data-open-tracker>
+                            <span class="material-symbols-sharp" aria-hidden="true">checklist</span>
+                            Abrir registro de actividades
+                        </button>
+                        <a class="btn" href="https://discord.gg/invite/eKZaYBKd3W" target="_blank" rel="noopener">
+                            <span class="material-symbols-sharp" aria-hidden="true">forum</span>
+                            Unirme al Discord
+                        </a>
                     </div>
                 </div>
-                
+
+                <!-- Placa del próximo evento (se llena con js/index.js) -->
+                <aside class="event" id="event" aria-label="Próximo evento" data-state="loading">
+                    <h2 class="event__title">Próximo evento</h2>
+                    <div class="event__art">
+                        <img id="event-image" src="Img/main/Event_race.png" alt="Imagen del próximo evento" width="300" height="84">
+                        <div class="event__skeleton" aria-hidden="true"></div>
+                    </div>
+                    <div class="event__time" id="event-time" role="timer" aria-live="off">
+                        <span class="event__status" id="event-status">Conectando con el servidor…</span>
+                    </div>
+                    <button type="button" class="btn btn--sm btn--ghost event__retry" id="event-retry" hidden>
+                        <span class="material-symbols-sharp" aria-hidden="true">refresh</span>
+                        Reintentar
+                    </button>
+                </aside>
             </div>
+
+            <div class="waves" aria-hidden="true"></div>
+        </section>
+
+        <!-- ===== Herramientas ===== -->
+        <section class="section" id="herramientas" aria-labelledby="tools-title">
+            <div class="section__head">
+                <h2 id="tools-title">Herramientas</h2>
+                <p>Elige una. Cada herramienta funciona directo en tu navegador y también desde el celular.</p>
+            </div>
+
+            <ul class="tools">
+                <li>
+                    <a class="tool" href="foxycount.html">
+                        <span class="tool__art"><img src="Img/main/MainImages/foxycount.png" alt="" loading="lazy"></span>
+                        <span class="tool__body">
+                            <span class="tool__name">Foxy Count <span class="badge badge--gold">Evento</span></span>
+                            <span class="tool__desc">Filtra personajes por rango, clase, tripulación y color de pelo.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="tool" href="foxymemory.html">
+                        <span class="tool__art"><img src="Img/main/MainImages/foxymemory.png" alt="" loading="lazy"></span>
+                        <span class="tool__body">
+                            <span class="tool__name">Foxy Memory <span class="badge badge--gold">Evento</span></span>
+                            <span class="tool__desc">Copia los colores del minijuego y mira cuáles no se repiten.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="tool" href="foxyquiz.html">
+                        <span class="tool__art"><img src="Img/main/MainImages/foxyquiz.png" alt="" loading="lazy"></span>
+                        <span class="tool__body">
+                            <span class="tool__name">Foxy Quiz <span class="badge badge--gold">Evento</span></span>
+                            <span class="tool__desc">Busca una pregunta y revisa si es verdadera o falsa.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="tool" href="kureha.html">
+                        <span class="tool__art"><img src="Img/main/MainImages/kureha.png" alt="" loading="lazy"></span>
+                        <span class="tool__body">
+                            <span class="tool__name">Pacientes de Kureha</span>
+                            <span class="tool__desc">Elige tus 7 pacientes y mira remedios, ingredientes y dónde están.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="tool" href="puzzle_antorchas.html">
+                        <span class="tool__art"><img src="Img/main/MainImages/puzzle.jfif" alt="" loading="lazy"></span>
+                        <span class="tool__body">
+                            <span class="tool__name">Antorchas de Noland</span>
+                            <span class="tool__desc">Resuelve el puzzle de las 8 antorchas con los pasos exactos.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="tool" href="https://tiermaker.com/list/video-games/tierlist-personajes-pve-gla---manual-del-gla-16207796/4453626" target="_blank" rel="noopener">
+                        <span class="tool__art"><img src="Img/main/MainImages/tierlist.png" alt="" loading="lazy"></span>
+                        <span class="tool__body">
+                            <span class="tool__name">Tierlist PVE <span class="badge badge--outline">Externo</span></span>
+                            <span class="tool__desc">Ranking de personajes para PVE, en TierMaker.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a class="tool" href="https://www.youtube.com/watch?v=PdLmrWxmLEQ&list=PLRXluPURcPVOyUM1NKeBkp0Y49S4CPGu7" target="_blank" rel="noopener">
+                        <span class="tool__art"><img src="Img/main/MainImages/guia.png" alt="" loading="lazy"></span>
+                        <span class="tool__body">
+                            <span class="tool__name">Videoguías <span class="badge badge--outline">YouTube</span></span>
+                            <span class="tool__desc">Lista de reproducción con guías paso a paso del juego.</span>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <div class="tool tool--soon" aria-disabled="true">
+                        <span class="tool__art"><img src="Img/main/MainImages/futuro.png" alt="" loading="lazy"></span>
+                        <span class="tool__body">
+                            <span class="tool__name">Próximamente</span>
+                            <span class="tool__desc">Se vienen más herramientas. Cuéntanos en el Discord cuál quieres.</span>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- ===== Comunidad ===== -->
+        <section class="section section--tight" id="comunidad" aria-labelledby="community-title">
+            <div class="section__head">
+                <h2 id="community-title">Comunidad</h2>
+                <p>Dudas, sugerencias y novedades del juego.</p>
+            </div>
+
+            <ul class="community">
+                <li>
+                    <a class="link-card" href="https://discord.gg/invite/eKZaYBKd3W" target="_blank" rel="noopener">
+                        <img src="Img/main/MainImages/Icono.png" alt="" loading="lazy">
+                        <span><strong>El Manual del GLA</strong><small>Servidor de Discord</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="link-card" href="https://www.youtube.com/@Droflax/videos" target="_blank" rel="noopener">
+                        <img src="Img/main/MainImages/youtube.png" alt="" loading="lazy">
+                        <span><strong>Droflax</strong><small>Canal de YouTube</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="link-card" href="https://discord.gg/grandlineadventures" target="_blank" rel="noopener">
+                        <img src="Img/main/MainImages/GLA.png" alt="" loading="lazy">
+                        <span><strong>Grand Line Adventures</strong><small>Discord oficial del juego</small></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="link-card" href="https://wiki.gla.com.br/index.php" target="_blank" rel="noopener">
+                        <img src="Img/main/MainImages/wiki.png" alt="" loading="lazy">
+                        <span><strong>WikiGLA</strong><small>Wiki en portugués</small></span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>Hecho por <a href="https://www.youtube.com/@Droflax/videos" target="_blank" rel="noopener">Droflax</a>. Proyecto de fans, sin fines de lucro y sin afiliación oficial con Grand Line Adventures ni One Piece.</p>
+    </footer>
+
+    <!-- =====================================================
+         Registro de actividades
+         ===================================================== -->
+    <dialog class="sheet" id="tracker" aria-labelledby="tracker-title">
+        <header class="sheet__head">
+            <h2 class="sheet__title" id="tracker-title">Registro de actividades</h2>
+            <p class="reset-pill" id="reset-pill" title="Las actividades se desmarcan solas cada semana">
+                <span class="material-symbols-sharp" aria-hidden="true">schedule</span>
+                <span id="reset-text">Reinicio semanal</span>
+            </p>
+            <button type="button" class="icon-btn" data-close-tracker aria-label="Cerrar registro">
+                <span class="material-symbols-sharp" aria-hidden="true">close</span>
+            </button>
+        </header>
+
+        <div class="tabs" role="tablist" aria-label="Vistas del registro">
+            <button type="button" class="tab" role="tab" id="tab-acts" aria-controls="view-acts" aria-selected="true">
+                <span class="material-symbols-sharp" aria-hidden="true">checklist</span> Actividades
+            </button>
+            <button type="button" class="tab" role="tab" id="tab-diamond" aria-controls="view-diamond" aria-selected="false" tabindex="-1">
+                <span class="material-symbols-sharp" aria-hidden="true">diamond</span> Desbloqueo de Diamante
+            </button>
         </div>
 
+        <div class="sheet__body">
+            <!-- Vista: cuentas y actividades -->
+            <section class="view acts" id="view-acts" role="tabpanel" aria-labelledby="tab-acts" data-pane="accounts">
+                <aside class="accounts" aria-label="Cuentas">
+                    <h3 class="pane-title">Cuentas</h3>
+                    <ul class="account-list" id="account-list"></ul>
+                    <button type="button" class="btn btn--sm" id="btn-add-account">
+                        <span class="material-symbols-sharp" aria-hidden="true">add</span>
+                        Agregar cuenta
+                    </button>
+                </aside>
 
-        <!-- Espacio para mostrar detalles de la cuenta seleccionada -->
-        <div id="activity-details"></div>
-        <button id="btn-agregar-actividad" style="display: none;">Agregar Actividad</button>
-        <button id="btn-pj-diamante" style="display: none;">Desbloqueo PJ Diamante</button>
+                <div class="detail" id="detail" aria-live="polite"></div>
+            </section>
 
-        
-
-        <div class="main">
-            <div class="search-bar">
-                <a class="cont"  id="foxycount" href="foxycount.html">
-                    <p class="title">Foxy Count</p>
-                </a>
-                <a class="cont"  id="tierlist" href="https://tiermaker.com/list/video-games/tierlist-personajes-pve-gla---manual-del-gla-16207796/4453626">
-                    <p class="title">Tierlist PVE</p>
-                </a>
-                <a class="cont" id="guia" href="https://www.youtube.com/watch?v=PdLmrWxmLEQ&list=PLRXluPURcPVOyUM1NKeBkp0Y49S4CPGu7">
-                    <p class="title">Videoguías</p>
-                </a>
-                <a class="cont" id="foxymemory" href="foxymemory.html">
-                    <p class="title">Foxy Memory</p>
-                </a>
-                <a class="cont" id="foxyquiz" href="foxyquiz.html">
-                    <p class="title">Foxy Quiz</p>
-                </a>
-                <a class="cont" id="kureha" href="kureha.html">
-                    <p class="title">Pacientes Kureha</p>
-                </a>
-                <a class="cont" id="antorcha" href="puzzle_antorchas.html">
-                    <p class="title">Antorchas Noland</p>
-                </a>
-                <div class="cont" id="futuro">
-                    <p class="title">Proximamente...</p>
+            <!-- Vista: desbloqueo de diamante -->
+            <section class="view diamond" id="view-diamond" role="tabpanel" aria-labelledby="tab-diamond" hidden>
+                <div class="diamond__intro">
+                    <p>Cada Diamante pide <strong>5 personajes de Oro</strong> de su clase con 5 estrellas (o con 4 estrellas y 540 medallas). Toca un Diamante para ver solo esa clase.</p>
                 </div>
-            </div>
+                <ul class="diamond__row" id="diamond-row"></ul>
+                <ul class="gold-grid" id="gold-grid"></ul>
+            </section>
         </div>
-    </div>
-    <div class="enlaces izq">
-        <a class="contEnlaces" href="https://discord.gg/invite/eKZaYBKd3W">
-            <h2>El Manual Del GLA</h2>
-            <img src="Img/main/MainImages/Icono.png" alt="El Manual del GLA">
-            <p>Discord</p>
-        </a>
-        <a class="contEnlaces" href="https://www.youtube.com/@Droflax/videos">
-            <h2>Canal de Youtube</h2>
-            <img src="Img/main/MainImages/youtube.png" alt="El Manual del GLA">
-            <p>Droflax</p>
-        </a>
-    </div>
-    <div class="enlaces der">
-        <a class="contEnlaces" href="https://discord.gg/grandlineadventures">
-            <h2>Grand Line Adventures</h2>
-            <img src="Img/main/MainImages/GLA.png" alt="El Manual del GLA">
-            <p>Discord</p>
-        </a>
-        <a class="contEnlaces" href="https://wiki.gla.com.br/index.php">
-            <h2>WikiGLA (Portugués)</h2>
-            <img src="Img/main/MainImages/wiki.png" alt="El Manual del GLA">
-            <p>Wiki</p>
-        </a>
-    </div>
-    <a class="firma" href="https://www.youtube.com/@Droflax/videos">
-        <p>Droflax</p>
-    </a>
+
+        <footer class="sheet__foot">
+            <p class="sheet__note">Tus datos se guardan solo en este navegador. Descarga una copia para no perderlos.</p>
+            <div class="sheet__tools">
+                <button type="button" class="btn btn--sm" id="btn-export">
+                    <span class="material-symbols-sharp" aria-hidden="true">download</span> Descargar copia
+                </button>
+                <button type="button" class="btn btn--sm" id="btn-import">
+                    <span class="material-symbols-sharp" aria-hidden="true">upload</span> Restaurar copia
+                </button>
+                <input type="file" id="file-import" accept="application/json,.json" hidden>
+            </div>
+        </footer>
+    </dialog>
+
+    <!-- Nueva cuenta -->
+    <dialog class="modal" id="dlg-account" aria-labelledby="dlg-account-title">
+        <form class="modal__form" method="dialog" id="form-account">
+            <h2 class="modal__title" id="dlg-account-title">Agregar cuenta</h2>
+            <label class="field">
+                <span>Nombre de la cuenta</span>
+                <input class="input" id="account-name" type="text" maxlength="24" required autocomplete="off" placeholder="Por ejemplo: Mi main">
+            </label>
+            <div class="field">
+                <span>Ícono</span>
+                <button type="button" class="icon-pick" id="icon-pick" aria-expanded="false" aria-controls="icon-grid">
+                    <img id="icon-current" src="Img/count/Medals/NoCategory.png" alt="Ícono elegido" width="64" height="64">
+                    <span>Cambiar ícono</span>
+                </button>
+                <ul class="icon-grid" id="icon-grid" hidden></ul>
+            </div>
+            <div class="modal__actions">
+                <button type="button" class="btn btn--ghost" data-cancel>Cancelar</button>
+                <button type="submit" class="btn btn--gold">Agregar cuenta</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Nueva actividad -->
+    <dialog class="modal" id="dlg-activity" aria-labelledby="dlg-activity-title">
+        <form class="modal__form" method="dialog" id="form-activity">
+            <h2 class="modal__title" id="dlg-activity-title">Agregar actividad</h2>
+            <label class="field">
+                <span>Nombre de la actividad</span>
+                <input class="input" id="activity-name" type="text" maxlength="40" required autocomplete="off" placeholder="Por ejemplo: Boss de Loguetown">
+            </label>
+            <div class="field" id="suggest-wrap">
+                <span>O elige una sugerida</span>
+                <ul class="suggest" id="suggest-list"></ul>
+            </div>
+            <div class="modal__actions">
+                <button type="button" class="btn btn--ghost" data-cancel>Cancelar</button>
+                <button type="submit" class="btn btn--gold">Agregar actividad</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Confirmación genérica -->
+    <dialog class="modal" id="dlg-confirm" aria-labelledby="dlg-confirm-title">
+        <form class="modal__form" method="dialog">
+            <h2 class="modal__title" id="dlg-confirm-title">Confirmar</h2>
+            <p class="modal__text" id="dlg-confirm-text"></p>
+            <div class="modal__actions">
+                <button type="submit" value="cancel" class="btn btn--ghost">Cancelar</button>
+                <button type="submit" value="ok" class="btn btn--danger" id="dlg-confirm-ok">Aceptar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <div class="toast-zone" id="toast-zone" role="status" aria-live="polite"></div>
+
+    <script src="js/data.min.js?v=2.2"></script>
+    <script src="js/index.min.js?v=2.2"></script>
 </body>
-<script src="js/index.min.js"></script>
-<script src="js/chars.min.js"></script>
+
 </html>

@@ -1,6 +1,12 @@
 # El Manual del GLA
 
-Colección de herramientas web para jugadores de **Grand Line Adventures** (GLA), el juego de Roblox basado en One Piece. El objetivo es facilitar la búsqueda de información y ayudar con los desafíos de eventos como Foxy Count.
+Proyecto independiente dedicado a recopilar y organizar información, herramientas y recursos de Grand Line Adventures.
+
+🌐 Sitio web oficial: https://manual-gla.pages.dev/
+
+Estado: El alojamiento y las publicaciones del proyecto se gestionan actualmente mediante Cloudflare Pages, por lo que la descripción y archivos en esta pagina, podrían estar desactualizados.
+
+Este repositorio se conserva como referencia pública del proyecto.
 
 Todo funciona directamente en el navegador, sin instalación ni servidor propio: es HTML, CSS y JavaScript puro.
 
